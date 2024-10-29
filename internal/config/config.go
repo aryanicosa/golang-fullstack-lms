@@ -40,6 +40,6 @@ func LoadConfig() (*Config, error) {
 		RedisHost:     os.Getenv("REDIS_HOST"),
         RedisPort:     os.Getenv("REDIS_PORT"),
         RedisPassword: os.Getenv("REDIS_PASSWORD"),
-        RedisDB:       0, // Default database
+        RedisDB:       os.Getenv("REDIS_DB_NUMBER")
     }, nil
 }

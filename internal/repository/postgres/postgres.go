@@ -1,10 +1,12 @@
 package postgres
 
 import (
-    "fmt"
-    "gorm.io/gorm"
-    "gorm.io/driver/postgres"
-    "fullstack-lms-go/internal/config"
+	"fmt"
+
+	"github.com/aryanicosa/golang-fullstack-lms/internal/config"
+	"github.com/aryanicosa/golang-fullstack-lms/internal/models"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func NewPostgresDB(cfg *config.Config) (*gorm.DB, error) {
@@ -24,14 +26,19 @@ func NewPostgresDB(cfg *config.Config) (*gorm.DB, error) {
     // Auto migrate the schema
     err = db.AutoMigrate(
         &models.User{},
-        &models.Exam{},
-        &models.Question{},
-        &models.Result{},
-        &models.Subscription{},
     )
     if err != nil {
         return nil, err
     }
 
     return db, nil
+}
+
+func ClosePostgresDB(db *gorm.DB) error {
+    sqlDB, err := db.DB()
+    if err != nil {
+        return err
+    }
+
+    return sqlDB.Close()
 }

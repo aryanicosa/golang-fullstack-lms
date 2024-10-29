@@ -1,7 +1,7 @@
 version: '3'
 services:
   service:
-    container_name: fullstack-lms-go
+    container_name: golang-fullstack-lms
     working_dir: /build
     build:
       context: .
@@ -16,7 +16,7 @@ services:
 
   postgres:
     image: postgres:12
-    container_name: fullstack-lms-go-postgres
+    container_name: golang-fullstack-lms-postgres
     restart: always
     ports:
       - "5432:5432"
@@ -29,11 +29,11 @@ services:
 
   redis:
     image: redis:5-alpine
-    container_name: fullstack-lms-go-redis
+    container_name: golang-fullstack-lms-redis
     ports:
       - "6379:6379"
     environment:
-      - REDIS_HOST=fullstack-lms-go-redis
+      - REDIS_HOST=golang-fullstack-lms-redis
       - REDIS_DB_NUMBER=0
 
 volumes:

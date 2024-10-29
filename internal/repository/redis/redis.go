@@ -4,7 +4,7 @@ import (
     "context"
     "fmt"
     "github.com/redis/go-redis/v9"
-    "fullstack-lms-go/internal/config"
+    "github.com/aryanicosa/golang-fullstack-lms/internal/config"
 )
 
 func NewRedisClient(cfg *config.Config) (*redis.Client, error) {

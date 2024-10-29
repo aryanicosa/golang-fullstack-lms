@@ -3,6 +3,8 @@ package repository
 import (
     "context"
     "time"
+
+    "github.com/aryanicosa/golang-fullstack-lms/internal/models"
 )
 
 type ExamRepository interface {
@@ -17,10 +19,4 @@ type ExamRepository interface {
     GetFromCache(ctx context.Context, key string) (interface{}, error)
     SetInCache(ctx context.Context, key string, value interface{}, expiration time.Duration) error
     DeleteFromCache(ctx context.Context, key string) error
-}
-
-type UserRepository interface {
-    // Similar structure for user-related operations
-    GetUserByID(ctx context.Context, id uint) (*models.User, error)
-    // ... other methods
 }
